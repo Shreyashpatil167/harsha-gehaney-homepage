@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Search, ShoppingBag, User } from "lucide-react";
+import { Menu, X, Search, ShoppingBag, User, Heart } from "lucide-react";
 import logo from "@/assets/logo.jpg";
 
 const navLinks = [
-  { name: "Collections", href: "#collections" },
+  { name: "New Arrivals", href: "#new" },
   { name: "Bridal", href: "#bridal" },
+  { name: "Collections", href: "#collections" },
   { name: "Lookbook", href: "#lookbook" },
   { name: "About", href: "#about" },
   { name: "Contact", href: "#contact" },
@@ -16,95 +17,110 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 100);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? "bg-background/95 backdrop-blur-md shadow-sm py-3"
-          : "bg-transparent py-6"
-      }`}
-    >
-      <div className="container-luxury">
-        <div className="flex items-center justify-between">
-          {/* Mobile Menu Toggle */}
-          <button
-            className="md:hidden text-primary p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+    <>
+      {/* Announcement Bar */}
+      <div className="bg-primary text-primary-foreground py-2.5 text-center overflow-hidden">
+        <div className="animate-marquee whitespace-nowrap inline-flex">
+          <span className="text-xs font-body tracking-[0.15em] uppercase mx-8">
+            ✦ Complimentary Styling Consultation ✦ Worldwide Shipping ✦ Book Your Bridal Appointment ✦ New Collection: Autumn/Winter 2024 ✦
+          </span>
+          <span className="text-xs font-body tracking-[0.15em] uppercase mx-8">
+            ✦ Complimentary Styling Consultation ✦ Worldwide Shipping ✦ Book Your Bridal Appointment ✦ New Collection: Autumn/Winter 2024 ✦
+          </span>
+        </div>
+      </div>
 
-          {/* Desktop Navigation Left */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.slice(0, 3).map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-xs font-body tracking-[0.2em] uppercase text-primary hover:text-secondary transition-colors duration-300"
-              >
-                {link.name}
-              </a>
-            ))}
-          </nav>
+      {/* Main Header */}
+      <header
+        className={`sticky top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          isScrolled
+            ? "bg-cream/98 backdrop-blur-md shadow-sm"
+            : "bg-cream"
+        }`}
+      >
+        <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
+          <div className="flex items-center justify-between h-20 lg:h-24">
+            {/* Mobile Menu Toggle */}
+            <button
+              className="lg:hidden text-primary p-2 -ml-2"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
 
-          {/* Logo */}
-          <a href="/" className="flex-shrink-0">
-            <img
-              src={logo}
-              alt="Harsha Gehaney"
-              className="h-16 md:h-20 w-auto transition-transform duration-500 hover:scale-105"
-            />
-          </a>
+            {/* Left Navigation */}
+            <nav className="hidden lg:flex items-center gap-10">
+              {navLinks.slice(0, 3).map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="text-[11px] font-body tracking-[0.2em] uppercase text-primary hover:text-secondary transition-colors duration-300 relative group"
+                >
+                  {link.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-secondary transition-all duration-300 group-hover:w-full" />
+                </a>
+              ))}
+            </nav>
 
-          {/* Desktop Navigation Right */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.slice(3).map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-xs font-body tracking-[0.2em] uppercase text-primary hover:text-secondary transition-colors duration-300"
-              >
-                {link.name}
-              </a>
-            ))}
-            <div className="flex items-center gap-4 ml-4">
-              <button aria-label="Search" className="text-primary hover:text-secondary transition-colors">
-                <Search size={18} />
+            {/* Logo - Centered */}
+            <a href="/" className="absolute left-1/2 transform -translate-x-1/2">
+              <img
+                src={logo}
+                alt="Harsha Gehaney"
+                className="h-14 lg:h-[72px] w-auto transition-all duration-500"
+              />
+            </a>
+
+            {/* Right Navigation */}
+            <nav className="hidden lg:flex items-center gap-10">
+              {navLinks.slice(3).map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="text-[11px] font-body tracking-[0.2em] uppercase text-primary hover:text-secondary transition-colors duration-300 relative group"
+                >
+                  {link.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-secondary transition-all duration-300 group-hover:w-full" />
+                </a>
+              ))}
+            </nav>
+
+            {/* Icon Navigation */}
+            <div className="flex items-center gap-5">
+              <button aria-label="Search" className="text-primary hover:text-secondary transition-colors hidden sm:block">
+                <Search size={18} strokeWidth={1.5} />
               </button>
-              <button aria-label="Account" className="text-primary hover:text-secondary transition-colors">
-                <User size={18} />
+              <button aria-label="Wishlist" className="text-primary hover:text-secondary transition-colors hidden sm:block">
+                <Heart size={18} strokeWidth={1.5} />
               </button>
-              <button aria-label="Cart" className="text-primary hover:text-secondary transition-colors">
-                <ShoppingBag size={18} />
+              <button aria-label="Account" className="text-primary hover:text-secondary transition-colors hidden lg:block">
+                <User size={18} strokeWidth={1.5} />
+              </button>
+              <button aria-label="Cart" className="text-primary hover:text-secondary transition-colors relative">
+                <ShoppingBag size={18} strokeWidth={1.5} />
+                <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-secondary text-[9px] text-secondary-foreground rounded-full flex items-center justify-center font-medium">
+                  0
+                </span>
               </button>
             </div>
-          </nav>
-
-          {/* Mobile Icons */}
-          <div className="flex md:hidden items-center gap-3">
-            <button aria-label="Search" className="text-primary p-2">
-              <Search size={20} />
-            </button>
-            <button aria-label="Cart" className="text-primary p-2">
-              <ShoppingBag size={20} />
-            </button>
           </div>
         </div>
 
         {/* Mobile Menu */}
         <div
-          className={`md:hidden overflow-hidden transition-all duration-500 ${
-            isMobileMenuOpen ? "max-h-96 mt-6" : "max-h-0"
+          className={`lg:hidden overflow-hidden transition-all duration-500 bg-cream ${
+            isMobileMenuOpen ? "max-h-[400px]" : "max-h-0"
           }`}
         >
-          <nav className="flex flex-col items-center gap-6 py-6 border-t border-border">
+          <nav className="flex flex-col items-center gap-6 py-8 border-t border-border/50">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -117,8 +133,8 @@ const Header = () => {
             ))}
           </nav>
         </div>
-      </div>
-    </header>
+      </header>
+    </>
   );
 };
 

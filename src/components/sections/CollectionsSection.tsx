@@ -7,95 +7,88 @@ const collections = [
   {
     id: 1,
     name: "Bridal",
-    description: "Exquisite wedding ensembles for your special day",
+    subtitle: "Couture",
     image: bridalImage,
+    link: "#bridal",
   },
   {
     id: 2,
     name: "Festive",
-    description: "Celebrate traditions in resplendent elegance",
+    subtitle: "Wear",
     image: festiveImage,
+    link: "#festive",
   },
   {
     id: 3,
     name: "Couture",
-    description: "Bespoke creations for the discerning connoisseur",
+    subtitle: "Bespoke",
     image: coutureImage,
+    link: "#couture",
   },
   {
     id: 4,
     name: "Prêt",
-    description: "Contemporary luxury for everyday occasions",
+    subtitle: "à Porter",
     image: pretImage,
+    link: "#pret",
   },
 ];
 
 const CollectionsSection = () => {
   return (
-    <section id="collections" className="section-luxury bg-peach-dark/20">
-      <div className="container-luxury">
+    <section id="collections" className="py-20 lg:py-32 bg-cream">
+      <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
         {/* Section Header */}
-        <div className="text-center mb-16 md:mb-24">
-          <p className="text-xs font-body tracking-[0.3em] uppercase text-secondary mb-4">
-            Explore Our World
+        <div className="text-center mb-16 lg:mb-24">
+          <p className="text-[11px] font-body tracking-[0.3em] uppercase text-secondary mb-4">
+            Shop By Category
           </p>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-light text-primary mb-6">
-            Signature Collections
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-light text-primary">
+            Collections
           </h2>
-          <div className="gold-divider" />
         </div>
 
         {/* Collections Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          {collections.map((collection, index) => (
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+          {collections.map((collection) => (
             <a
               key={collection.id}
-              href="#"
-              className="group relative overflow-hidden hover-lift"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              href={collection.link}
+              className="group relative overflow-hidden"
             >
-              {/* Image Container */}
+              {/* Image */}
               <div className="aspect-[3/4] overflow-hidden">
                 <img
                   src={collection.image}
                   alt={collection.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
               </div>
+
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500" />
 
               {/* Content */}
-              <div className="absolute inset-0 flex flex-col justify-end p-6">
-                {/* Gold Line */}
-                <div className="w-12 h-px bg-secondary mb-4 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-                
-                <h3 className="font-heading text-2xl text-primary-foreground mb-2">
-                  {collection.name}
-                </h3>
-                <p className="text-sm font-body font-light text-primary-foreground/80 mb-4 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
-                  {collection.description}
-                </p>
-                
-                <span className="text-xs font-body tracking-[0.2em] uppercase text-secondary">
-                  Discover →
-                </span>
-              </div>
-
-              {/* Corner Accent */}
-              <div className="absolute top-0 right-0 w-16 h-16 overflow-hidden">
-                <div className="absolute top-0 right-0 w-0 h-0 border-t-[40px] border-t-secondary/20 border-l-[40px] border-l-transparent group-hover:border-t-secondary/40 transition-colors duration-500" />
+              <div className="absolute inset-0 flex flex-col justify-end p-5 lg:p-8">
+                <div className="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                  <p className="text-[10px] font-body tracking-[0.2em] uppercase text-secondary mb-1">
+                    {collection.subtitle}
+                  </p>
+                  <h3 className="font-display text-2xl lg:text-3xl text-primary-foreground">
+                    {collection.name}
+                  </h3>
+                  
+                  {/* Explore Link */}
+                  <div className="mt-4 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                    <span className="text-[10px] font-body tracking-[0.2em] uppercase text-primary-foreground flex items-center gap-2">
+                      Explore
+                      <span className="w-6 h-px bg-secondary" />
+                    </span>
+                  </div>
+                </div>
               </div>
             </a>
           ))}
-        </div>
-
-        {/* View All Button */}
-        <div className="text-center mt-16">
-          <a href="#" className="btn-luxury-outline">
-            View All Collections
-          </a>
         </div>
       </div>
     </section>
