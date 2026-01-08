@@ -39,26 +39,37 @@ const Header = () => {
 
       {/* Main Header */}
       <header
-        className={`sticky top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`sticky top-0 z-50 transition-all duration-500 ${
           isScrolled
             ? "bg-cream/98 backdrop-blur-md shadow-sm"
             : "bg-cream"
         }`}
       >
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
-          <div className="flex items-center justify-between h-20 lg:h-24">
-            {/* Mobile Menu Toggle */}
-            <button
-              className="lg:hidden text-primary p-2 -ml-2"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
-            </button>
+          <div className="grid grid-cols-3 items-center h-20 lg:h-24">
+            
+            {/* Left: Mobile Menu + Logo */}
+            <div className="flex items-center gap-4">
+              <button
+                className="lg:hidden text-primary p-2 -ml-2"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label="Toggle menu"
+              >
+                {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+              </button>
 
-            {/* Left Navigation */}
-            <nav className="hidden lg:flex items-center gap-10">
-              {navLinks.slice(0, 3).map((link) => (
+              <a href="/" className="flex items-center">
+                <img
+                  src={logo}
+                  alt="Harsha Gehaney"
+                  className="h-14 lg:h-[72px] w-auto"
+                />
+              </a>
+            </div>
+
+            {/* Center: Navigation */}
+            <nav className="hidden lg:flex justify-center items-center gap-12">
+              {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
@@ -70,47 +81,40 @@ const Header = () => {
               ))}
             </nav>
 
-            {/* Logo - Centered */}
-            <a href="/" className="absolute left-1/2 transform -translate-x-1/2">
-              <img
-                src={logo}
-                alt="Harsha Gehaney"
-                className="h-14 lg:h-[72px] w-auto transition-all duration-500"
-              />
-            </a>
-
-            {/* Right Navigation */}
-            <nav className="hidden lg:flex items-center gap-10">
-              {navLinks.slice(3).map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-[11px] font-body tracking-[0.2em] uppercase text-primary hover:text-secondary transition-colors duration-300 relative group"
-                >
-                  {link.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-secondary transition-all duration-300 group-hover:w-full" />
-                </a>
-              ))}
-            </nav>
-
-            {/* Icon Navigation */}
-            <div className="flex items-center gap-5">
-              <button aria-label="Search" className="text-primary hover:text-secondary transition-colors hidden sm:block">
+            {/* Right: Icons */}
+            <div className="flex justify-end items-center gap-5">
+              <button
+                aria-label="Search"
+                className="text-primary hover:text-secondary transition-colors hidden sm:block"
+              >
                 <Search size={18} strokeWidth={1.5} />
               </button>
-              <button aria-label="Wishlist" className="text-primary hover:text-secondary transition-colors hidden sm:block">
+
+              <button
+                aria-label="Wishlist"
+                className="text-primary hover:text-secondary transition-colors hidden sm:block"
+              >
                 <Heart size={18} strokeWidth={1.5} />
               </button>
-              <button aria-label="Account" className="text-primary hover:text-secondary transition-colors hidden lg:block">
+
+              <button
+                aria-label="Account"
+                className="text-primary hover:text-secondary transition-colors hidden lg:block"
+              >
                 <User size={18} strokeWidth={1.5} />
               </button>
-              <button aria-label="Cart" className="text-primary hover:text-secondary transition-colors relative">
+
+              <button
+                aria-label="Cart"
+                className="text-primary hover:text-secondary transition-colors relative"
+              >
                 <ShoppingBag size={18} strokeWidth={1.5} />
                 <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-secondary text-[9px] text-secondary-foreground rounded-full flex items-center justify-center font-medium">
                   0
                 </span>
               </button>
             </div>
+
           </div>
         </div>
 
