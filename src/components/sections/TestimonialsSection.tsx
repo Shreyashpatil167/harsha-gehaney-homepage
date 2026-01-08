@@ -1,95 +1,128 @@
-import { Quote } from "lucide-react";
+import { useState } from "react";
+import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
 const testimonials = [
   {
     id: 1,
-    quote: "Harsha Gehaney crafted the most exquisite lehenga for my wedding. Every detail was perfection — from the intricate embroidery to the impeccable fit. I felt like royalty.",
+    quote: "Harsha Gehaney crafted the most exquisite lehenga for my wedding. Every detail was absolute perfection — from the intricate zardozi embroidery to the impeccable fit. I truly felt like royalty.",
     author: "Priya Sharma",
     location: "Mumbai",
     occasion: "Bride, 2024",
   },
   {
     id: 2,
-    quote: "The craftsmanship is unparalleled. I've purchased from many designers, but HG stands apart. Each piece tells a story of heritage and artistry.",
+    quote: "The craftsmanship is unparalleled. I've purchased from many designers, but HG stands apart. Each piece tells a story of heritage and artistry that resonates with my soul.",
     author: "Meera Kapoor",
     location: "Delhi",
     occasion: "Mother of the Bride",
   },
   {
     id: 3,
-    quote: "From consultation to delivery, the experience was seamless. The team understood my vision and created a truly bespoke piece that exceeded all expectations.",
+    quote: "From the initial consultation to the final delivery, the experience was seamless and luxurious. The team understood my vision and created a truly bespoke masterpiece.",
     author: "Ananya Reddy",
     location: "Hyderabad",
     occasion: "Bride, 2023",
   },
 ];
 
+const pressMentions = ["Vogue India", "Harper's Bazaar", "Elle", "Femina", "Grazia"];
+
 const TestimonialsSection = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
   return (
-    <section className="section-luxury bg-primary text-primary-foreground overflow-hidden">
-      <div className="container-luxury">
+    <section className="py-20 lg:py-32 bg-primary overflow-hidden">
+      <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
         {/* Section Header */}
-        <div className="text-center mb-16 md:mb-20">
-          <p className="text-xs font-body tracking-[0.3em] uppercase text-secondary mb-4">
+        <div className="text-center mb-16 lg:mb-20">
+          <p className="text-[11px] font-body tracking-[0.3em] uppercase text-secondary mb-4">
             Love Letters
           </p>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-light mb-6">
-            From Our <span className="font-heading italic text-secondary">Brides</span>
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-light text-primary-foreground">
+            From Our Brides
           </h2>
-          <div className="w-24 h-px bg-gradient-to-r from-transparent via-secondary to-transparent mx-auto" />
         </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={testimonial.id}
-              className={`relative ${index === 1 ? 'md:-mt-8' : ''}`}
-            >
-              {/* Card */}
-              <div className="bg-navy-light/30 backdrop-blur-sm border border-primary-foreground/10 p-8 md:p-10 relative">
-                {/* Quote Icon */}
-                <Quote
-                  size={40}
-                  className="text-secondary/30 absolute top-6 right-6"
-                />
+        {/* Testimonial Carousel */}
+        <div className="max-w-4xl mx-auto relative">
+          {/* Quote Icon */}
+          <Quote
+            size={60}
+            className="text-secondary/20 absolute -top-4 left-0 lg:-left-8"
+          />
 
-                {/* Quote Text */}
-                <blockquote className="font-body font-light text-base leading-relaxed text-primary-foreground/90 mb-8 italic">
-                  "{testimonial.quote}"
-                </blockquote>
+          {/* Testimonial Content */}
+          <div className="text-center px-4 lg:px-16">
+            <blockquote className="font-display text-xl md:text-2xl lg:text-3xl font-light text-primary-foreground leading-relaxed mb-10 min-h-[150px]">
+              "{testimonials[currentIndex].quote}"
+            </blockquote>
 
-                {/* Author */}
-                <div>
-                  <div className="w-12 h-px bg-secondary mb-4" />
-                  <p className="font-heading text-lg text-primary-foreground">
-                    {testimonial.author}
-                  </p>
-                  <p className="text-xs font-body tracking-[0.1em] uppercase text-secondary mt-1">
-                    {testimonial.location}
-                  </p>
-                  <p className="text-xs font-body text-primary-foreground/60 mt-1">
-                    {testimonial.occasion}
-                  </p>
-                </div>
-              </div>
+            <div className="w-12 h-px bg-secondary mx-auto mb-6" />
 
-              {/* Decorative Corner */}
-              <div className="absolute -bottom-2 -right-2 w-16 h-16 border-r border-b border-secondary/30" />
+            <div>
+              <p className="font-heading text-lg text-primary-foreground">
+                {testimonials[currentIndex].author}
+              </p>
+              <p className="text-[11px] font-body tracking-[0.15em] uppercase text-secondary mt-1">
+                {testimonials[currentIndex].location} • {testimonials[currentIndex].occasion}
+              </p>
             </div>
-          ))}
+          </div>
+
+          {/* Navigation */}
+          <div className="flex items-center justify-center gap-6 mt-12">
+            <button
+              onClick={handlePrev}
+              className="w-10 h-10 border border-primary-foreground/30 flex items-center justify-center text-primary-foreground hover:bg-primary-foreground hover:text-primary transition-all duration-300"
+              aria-label="Previous testimonial"
+            >
+              <ChevronLeft size={18} />
+            </button>
+
+            {/* Dots */}
+            <div className="flex items-center gap-2">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    index === currentIndex
+                      ? "bg-secondary w-6"
+                      : "bg-primary-foreground/30 hover:bg-primary-foreground/50"
+                  }`}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={handleNext}
+              className="w-10 h-10 border border-primary-foreground/30 flex items-center justify-center text-primary-foreground hover:bg-primary-foreground hover:text-primary transition-all duration-300"
+              aria-label="Next testimonial"
+            >
+              <ChevronRight size={18} />
+            </button>
+          </div>
         </div>
 
         {/* Press Mentions */}
         <div className="mt-20 pt-12 border-t border-primary-foreground/10">
-          <p className="text-xs font-body tracking-[0.2em] uppercase text-center text-primary-foreground/50 mb-8">
-            Featured In
+          <p className="text-[10px] font-body tracking-[0.3em] uppercase text-center text-primary-foreground/40 mb-8">
+            As Featured In
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-            {["Vogue India", "Harper's Bazaar", "Elle", "Femina", "GQ India"].map((press) => (
+          <div className="flex flex-wrap justify-center items-center gap-8 lg:gap-16">
+            {pressMentions.map((press) => (
               <span
                 key={press}
-                className="font-heading text-lg md:text-xl text-primary-foreground/40 hover:text-secondary transition-colors duration-300 cursor-pointer"
+                className="font-heading text-lg lg:text-xl text-primary-foreground/30 hover:text-secondary transition-colors duration-300 cursor-pointer"
               >
                 {press}
               </span>
