@@ -1,9 +1,9 @@
-import logo from "@/assets/logo.jpg";
+import logo from "@/assets/logo-new.jpg";
 import coutureImage from "@/assets/collection-couture.jpg";
 
 const AboutSection = () => {
   return (
-    <section id="about" className="py-20 lg:py-32 bg-cream overflow-hidden">
+    <section id="about" className="py-20 lg:py-32 overflow-hidden">
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Image Side */}

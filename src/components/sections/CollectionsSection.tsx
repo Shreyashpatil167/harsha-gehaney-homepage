@@ -36,7 +36,7 @@ const collections = [
 
 const CollectionsSection = () => {
   return (
-    <section id="collections" className="py-20 lg:py-32 bg-cream">
+    <section id="collections" className="py-20 lg:py-32">
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <div className="text-center mb-16 lg:mb-24">

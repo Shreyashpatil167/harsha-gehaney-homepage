@@ -41,8 +41,8 @@ const Header = () => {
       <header
         className={`sticky top-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? "bg-cream/98 backdrop-blur-md shadow-sm"
-            : "bg-cream"
+            ? "bg-background/95 backdrop-blur-md shadow-sm"
+            : "bg-transparent"
         }`}
       >
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
@@ -120,7 +120,7 @@ const Header = () => {
 
         {/* Mobile Menu */}
         <div
-          className={`lg:hidden overflow-hidden transition-all duration-500 bg-cream ${
+          className={`lg:hidden overflow-hidden transition-all duration-500 bg-background/95 backdrop-blur-md ${
             isMobileMenuOpen ? "max-h-[400px]" : "max-h-0"
           }`}
         >

@@ -13,7 +13,7 @@ const NewsletterSection = () => {
   };
 
   return (
-    <section className="py-20 lg:py-28 bg-peach-dark/40">
+    <section className="py-20 lg:py-28">
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
         <div className="max-w-2xl mx-auto text-center">
           {/* Decorative */}
