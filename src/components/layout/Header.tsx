@@ -120,7 +120,7 @@ const Header = () => {
 
         {/* Mobile Menu */}
         <div
-          className={`lg:hidden overflow-hidden transition-all duration-500 bg-cream ${
+          className={`lg:hidden overflow-hidden transition-all duration-500 bg-background/95 backdrop-blur-md ${
             isMobileMenuOpen ? "max-h-[400px]" : "max-h-0"
           }`}
         >

@@ -46,7 +46,7 @@ const FeaturedProducts = () => {
   const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
 
   return (
-    <section id="new" className="py-20 lg:py-32 bg-background">
+    <section id="new" className="py-20 lg:py-32">
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12 lg:mb-20">
