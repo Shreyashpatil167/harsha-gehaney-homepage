@@ -105,6 +105,9 @@
 
   body {
     @apply bg-background text-foreground font-body antialiased;
+    background-image: url('/images/background-texture.png');
+    background-repeat: repeat;
+    background-size: 500px 500px;
   }
 
   h1, h2, h3, h4, h5, h6 {
