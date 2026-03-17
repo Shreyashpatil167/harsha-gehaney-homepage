@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Search, ShoppingBag, User, Heart } from "lucide-react";
-import logo from "@/assets/logo.jpg";
+import logo from "@/assets/logo-new.jpg";
 
 const navLinks = [
   { name: "New Arrivals", href: "#new" },
