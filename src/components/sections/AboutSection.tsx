@@ -1,4 +1,4 @@
-import logo from "@/assets/logo.jpg";
+import logo from "@/assets/logo-new.jpg";
 import coutureImage from "@/assets/collection-couture.jpg";
 
 const AboutSection = () => {
