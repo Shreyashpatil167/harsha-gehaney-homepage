@@ -11,7 +11,7 @@ import NewsletterSection from "@/components/sections/NewsletterSection";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Header />
       <main>
         <HeroSection />
